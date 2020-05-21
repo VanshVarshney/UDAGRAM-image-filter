@@ -10,7 +10,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   // Set the network port
   const port = process.env.PORT || 8082;
 
-  const image_url_regex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpeg|jpg|gif|png|svg)/
+  const image_url = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpeg|jpg|gif|png|svg)/
   
   app.use(bodyParser.json());
   
@@ -26,12 +26,12 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     let { image_url } = request.query;
     
     if (!image_url) {
-      response.status(400).send("image url missing")
+      response.status(400).send("Image Url Missing")
     }else {
 
-      console.log(image_url.match(image_url_regex))
-      if (!image_url.match(image_url_regex)) {
-        response.status(400).send("image url format is wrong, example url : https://some_domain(like google.com)/probably_some_more_paths/image_name.png/jpg/gif")
+      console.log(image_url.match(image_url))
+      if (!image_url.match(image_url)) {
+        response.status(400).send("Give The Url Of Image")
       }else {
         
         try {
@@ -42,12 +42,12 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
               await deleteLocalFiles([image_response])
             })
           } else {
-            response.status(200).send("no image found in the given url")
+            response.status(200).send("Error No Image URL")
           }
         } catch (err) {
           
           console.error(err)
-          response.status(200).send("image processing failed")
+          response.status(200).send("Failed")
         }
       }
     }

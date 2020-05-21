@@ -1,48 +1,32 @@
-# Udagram Image Filtering Microservice
+# Udagram Image Filtering
 
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
-The project is split into three parts:
-1. [The Simple Frontend](https://github.com/udacity/cloud-developer/tree/master/course-02/exercises/udacity-c2-frontend)
-A basic Ionic client web application which consumes the RestAPI Backend. [Covered in the course]
-2. [The RestAPI Backend](https://github.com/udacity/cloud-developer/tree/master/course-02/exercises/udacity-c2-restapi), a Node-Express server which can be deployed to a cloud service. [Covered in the course]
-3. [The Image Filtering Microservice](https://github.com/udacity/cloud-developer/tree/master/course-02/project/image-filter-starter-code), the final project for the course. It is a Node-Express application which runs a simple script to process images. [Your assignment]
+## Steps
+`step 1:` clone this repo.
+`step 2:` open this repository in vs code.
+`step 3:` go to terminal type `npm i` to install all node dependencies.  
+`step 4:` now type `npm run dev` the local server will started. go to postman import the postman.json file in this repo and send a request,if it  shows `status 200 OK` good to go.
+`step 5:` now type `npm run build` this will build the bundle to be putted in EBS.
+`step 6:` now time for Deploy on AWS Elastic Beanstalk `eb init` Choose Region And All Stuffs.
+`step 7:` add this line `deploy:  artifact: ./www/Archive.zip` in  `.elasticbeanstalk/config.yaml` THIS is MUST.
+`step 8:` type `eb create` for creating the environment in EBS.
+`step 9:` Now Final Step `eb deploy` for deploying the application.
+ 
 
-## Tasks
+# URL For Checking Udagram
 
-### Setup Node Environment
+AWS Elastic Beanstalk END-Point : http://udagram-dev222222.us-east-1.elasticbeanstalk.com/
 
-You'll need to create a new node server. Open a new terminal within the project directory and run:
+### Test
+Unfiltered Image &nbsp;
 
-1. Initialize a new project: `npm i`
-2. run the development server with `npm run dev`
+Link 1 : https://image.shutterstock.com/image-photo/blue-compact-suv-car-sport-600w-1048266268.jpg &nbsp;
 
-### Create a new endpoint in the server.ts file
+Link 2 : https://thumbs.dreamstime.com/z/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg &nbsp;
 
-The starter code has a task for you to complete an endpoint in `./src/server.ts` which uses query parameter to download an image from a public URL, filter the image, and return the result.
+Filtered Image &nbsp;
 
-We've included a few helper functions to handle some of these concepts and we're importing it for you at the top of the `./src/server.ts`  file.
+For Link 1 :http://udagram-dev222222.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://image.shutterstock.com/image-photo/blue-compact-suv-car-sport-600w-1048266268.jpg &nbsp;
 
-```typescript
-import {filterImageFromURL, deleteLocalFiles} from './util/util';
-```
-
-### Deploying your system
-
-Follow the process described in the course to `eb init` a new application and `eb create` a new environment to deploy your image-filter service! Don't forget you can use `eb deploy` to push changes.
-
-## Stand Out (Optional)
-
-### Refactor the course RESTapi
-
-If you're feeling up to it, refactor the course RESTapi to make a request to your newly provisioned image server.
-
-### Authentication
-
-Prevent requests without valid authentication headers.
-> !!NOTE if you choose to submit this, make sure to add the token to the postman collection and export the postman collection file to your submission so we can review!
-
-### Custom Domain Name
-
-Add your own domain name and have it point to the running services (try adding a subdomain name to point to the processing server)
-> !NOTE: Domain names are not included in AWS’ free tier and will incur a cost.
+For Link 2 :http://udagram-dev222222.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://thumbs.dreamstime.com/z/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg  &nbsp;
