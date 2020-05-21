@@ -3,15 +3,15 @@
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
 ## Steps
-`step 1:` clone this repo.
-`step 2:` open this repository in vs code.
-`step 3:` go to terminal type `npm i` to install all node dependencies.  
-`step 4:` now type `npm run dev` the local server will started. go to postman import the postman.json file in this repo and send a request,if it  shows `status 200 OK` good to go.
-`step 5:` now type `npm run build` this will build the bundle to be putted in EBS.
-`step 6:` now time for Deploy on AWS Elastic Beanstalk `eb init` Choose Region And All Stuffs.
-`step 7:` add this line `deploy:  artifact: ./www/Archive.zip` in  `.elasticbeanstalk/config.yaml` THIS is MUST.
-`step 8:` type `eb create` for creating the environment in EBS.
-`step 9:` Now Final Step `eb deploy` for deploying the application.
+`step 1:` clone this repo. </br>
+`step 2:` open this repository in vs code. </br>
+`step 3:` go to terminal type `npm i` to install all node dependencies. </br>
+`step 4:` now type `npm run dev` the local server will started. go to postman import the postman.json file in this repo and send a request,if it  shows `status 200 OK` good to go. </br>
+`step 5:` now type `npm run build` this will build the bundle to be putted in EBS. </br>
+`step 6:` now time for Deploy on AWS Elastic Beanstalk `eb init` Choose Region And All Stuffs. </br>
+`step 7:` add this line `deploy:  artifact: ./www/Archive.zip` in  `.elasticbeanstalk/config.yaml` THIS is MUST. </br>
+`step 8:` type `eb create` for creating the environment in EBS. </br>
+`step 9:` Now Final Step `eb deploy` for deploying the application. </br>
  
 
 # URL For Checking Udagram
