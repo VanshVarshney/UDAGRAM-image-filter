@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
+import { Request, Response } from 'express';
+
 
 (async () => {
 
@@ -14,40 +16,40 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   
   app.use(bodyParser.json());
   
-  app.use(function (request, response, next) {
-    if (request.path != '/filteredimage') {
-      response.send("try GET /filteredimage?image_url={{}}")
+  app.use(function (Request, Response, next) {
+    if (Request.path != '/filteredimage') {
+      Response.send("try GET /filteredimage?image_url={{}}")
     }
     next()
   })
 
-  app.get("/filteredimage", async (request, response) => {
+  app.get("/filteredimage", async (Request, Response) => {
  
-    let { image_url } = request.query;
+    let { image_url } = Request.query;
     
     if (!image_url) {
-      response.status(400).send("Image Url Missing")
+      Response.status(400).send("Image Url Missing")
     }else {
 
       console.log(image_url.match(image_url))
       if (!image_url.match(image_url)) {
-        response.status(400).send("Give The Url Of Image")
+        Response.status(400).send("Give The Url Of Image")
       }else {
         
         try {
-          let image_response = await filterImageFromURL(image_url)
+          let image_Response = await filterImageFromURL(image_url)
     
-          if(image_response != "no image found"){
-            response.status(200).sendFile(image_response, async callback=>{
-              await deleteLocalFiles([image_response])
+          if(image_Response != "no image found"){
+            Response.status(200).sendFile(image_Response, async callback=>{
+              await deleteLocalFiles([image_Response])
             })
           } else {
-            response.status(200).send("Error No Image URL")
+            Response.status(200).send("Error No Image URL")
           }
         } catch (err) {
           
           console.error(err)
-          response.status(200).send("Failed")
+          Response.status(200).send("Failed")
         }
       }
     }
@@ -59,8 +61,8 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   
   // Root Endpoint
   // Displays a simple message to the user
-  app.get( "/", async ( request, response ) => {
-    response.send("try GET /filteredimage?image_url={{}}")
+  app.get( "/", async ( Request, Response ) => {
+    Response.send("try GET /filteredimage?image_url={{}}")
   } );
   
 
